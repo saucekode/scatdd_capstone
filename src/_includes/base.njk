@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+  <title>{{art_title}}</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <section class="container">
+    {% include 'header.njk' %}
+    <main class="page-wrapper">
+      {{content | safe}}
+    </main>
+    <footer class="page-wrapper">
+      {% include 'footer.njk' %}
+    </footer>
+  </section>
+
+  <script>
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+    </script>
+    <script>
+      $(function(){
+        $('.nav-list li a').on('click', function(){
+            var $this = $(this);
+            $('.nav-list li a').removeClass('active');
+            $this.addClass('active');
+        });
+      });
+    </script>
+</body>
+</html>
