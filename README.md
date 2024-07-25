@@ -4,7 +4,7 @@ The Capstone project for the SCA TDD program is a straightforward yet impactful 
 ## Tools Used
 - Github Actions for CI/CD pipeline
 - AWS CLI
-- EC2 instance
+- EC2
 - Cloudformation
 - Cloudfront
 
