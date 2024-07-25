@@ -17,7 +17,6 @@ jobs:
       run: |
         mkdir -p ~/.ssh
 
-        # Retrieve private key from secret manager (replace with your approach)
         echo ${{ secrets.CAPSTONE_SECRET }} > ~/.ssh/id_rsa
 
         chmod 600 ~/.ssh/id_rsa
