@@ -17,19 +17,12 @@ jobs:
       run: |
         mkdir -p ~/.ssh
 
-        echo "${{ secrets.CAPSTONE_SECRET }}" > ~/.ssh/id_rsa
+        # Retrieve private key from secret manager (replace with your approach)
+        echo ${{ secrets.CAPSTONE_SECRET }} > ~/.ssh/id_rsa
 
-        # Set the correct permissions for the private key
         chmod 600 ~/.ssh/id_rsa
-
         ssh-keyscan -H ec2-100-27-25-147.compute-1.amazonaws.com >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
       run: |
-        ssh -i ~/.ssh/id_rsa ubuntu@ec2-100-27-25-147.compute-1.amazonaws.com << 'EOF'
-          cd /home/ubuntu/scatdd_capstone
-          git pull origin main
-          npm run build
-          sudo cp -r /home/ubuntu/scatdd_capstone/public/. /var/www/html
-          systemctl restart nginx
-        EOF
+        ssh -i ~/.ssh/id_rsa ubuntu@ec2-100-27-25-147.compute-1.amazonaws.com  ./deploy.sh 
