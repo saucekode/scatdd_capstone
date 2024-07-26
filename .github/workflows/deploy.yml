@@ -30,6 +30,7 @@ jobs:
           if [ ! -d "$TARGET_DIR" ]; then
             echo "Directory $TARGET_DIR does not exist. Cloning repository..."
             git clone $REPO_URL $TARGET_DIR
+            npm install
             npm run build
             cd /var/www/html
             sudo rm index.nginx-debian.html
