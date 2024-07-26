@@ -16,11 +16,8 @@ jobs:
     - name: Setup SSH
       run: |
         mkdir -p ~/.ssh
-
         echo "${{ secrets.CAPSTONE_SECRET }}" > ~/.ssh/id_rsa
-
         chmod 600 ~/.ssh/id_rsa
-
         ssh-keyscan -H ec2-3-94-133-86.compute-1.amazonaws.com >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
