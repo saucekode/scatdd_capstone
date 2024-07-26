@@ -19,12 +19,21 @@ jobs:
         echo "${{ secrets.CAPSTONE_SECRET }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan -H ec2-3-94-133-86.compute-1.amazonaws.com >> ~/.ssh/known_hosts
-
     - name: Deploy to EC2
       run: |
         ssh -i ~/.ssh/id_rsa ubuntu@ec2-3-94-133-86.compute-1.amazonaws.com << 'EOF'
-          cd /home/ubuntu/scatdd_capstone
+          REPO_URL="https://github.com/saucekode/scatdd_capstone.git"
+          REPO_NAME=$(basename -s .git $REPO_URL)
+          TARGET_DIR="/home/ubuntu/$REPO_NAME"
+          PUBLIC_DIR="/var/www/html"
+
+          if [ ! -d "$TARGET_DIR" ]; then
+            echo "Directory $TARGET_DIR does not exist. Cloning repository..."
+            git clone $REPO_URL $TARGET_DIR
+          fi
+
+          cd $TARGET_DIR
           git pull origin main
           npm run build
-          sudo cp -r /home/ubuntu/scatdd_capstone/public/. /var/www/html
+          sudo cp -r $TARGET_DIR/public/. $PUBLIC_DIR
         EOF
