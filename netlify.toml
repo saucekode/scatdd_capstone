@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/admin"
+  to = "https://dazzling-croissant-66f390.netlify.app/admin"
+  status = 301
+  force = true
