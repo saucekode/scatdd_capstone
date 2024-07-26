@@ -25,7 +25,7 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -i ~/.ssh/id_rsa ubuntu@eec2-3-94-133-86.compute-1.amazonaws.com << 'EOF'
+        ssh -i ~/.ssh/id_rsa ubuntu@ec2-3-94-133-86.compute-1.amazonaws.com << 'EOF'
           cd /home/ubuntu/scatdd_capstone
           git pull origin main
           npm run build
