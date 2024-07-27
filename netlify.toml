@@ -1,9 +1,0 @@
-[build]
-  publish = "public"
-  command = "npx eleventy"
-
-[[redirects]]
-  from = "https://d1hfn5ec46dc1c.cloudfront.net/admin"
-  to = "https://dazzling-croissant-66f390.netlify.app/admin"
-  status = 301
-  force = true
