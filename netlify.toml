@@ -1,5 +1,6 @@
 [build]
-  publish = "public"
+  command = "npm run build && cp _redirects dist/_redirects"
+  publish = "dist"
 
 [[redirects]]
   from = "https://d1hfn5ec46dc1c.cloudfront.net/admin"
